@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.rajeshksv.messaging</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EE1447E8-5DAA-4B21-AAEB-71243564494D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>EE1447E8-5DAA-4B21-AAEB-71243564494D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Rajesh KSV</string>
+	<key>description</key>
+	<string>Send message to your friend easily now</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Message to Friend</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>in=$(echo "{query}" | tr -d "\\")
+
+echo "$in" &gt; user.txt</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EE1447E8-5DAA-4B21-AAEB-71243564494D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>msg</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Updating indexes.. Please Wait.</string>
+				<key>script</key>
+				<string>python iMessage.py "{query}"</string>
+				<key>subtext</key>
+				<string>Type in a name/number/email from your Address Book</string>
+				<key>title</key>
+				<string>iMessage</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "message: "</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>message:</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string>data=$(cat user.txt)
+cat &lt;&lt; CODE
+&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+&lt;item uid="iMessage Body" arg="{query}" valid="yes"&gt;
+&lt;title&gt;"To $data : {query}"&lt;/title&gt;
+&lt;subtitle&gt;&lt;/subtitle&gt;
+&lt;icon&gt;icon.png&lt;/icon&gt;
+&lt;/item&gt;
+&lt;/items&gt;
+CODE</string>
+				<key>title</key>
+				<string>iMessage Body</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Sent</string>
+				<key>title</key>
+				<string>Message to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>data=$(cat user.txt)
+
+osascript sendMessage.applescript "$data" "{query}"
+
+echo $data</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Now Send message to your friend directly from alfred
+
+Inspired from iM by Nolan Chan</string>
+	<key>uidata</key>
+	<dict>
+		<key>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>BAB04A88-09FF-4871-8A4E-4B80E83319B9</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>EE1447E8-5DAA-4B21-AAEB-71243564494D</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>rajeshksv.blogspot.com</string>
+</dict>
+</plist>
