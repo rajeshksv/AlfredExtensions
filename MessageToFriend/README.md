@@ -18,6 +18,7 @@ This is just the first version. Expect many many bugs to appear ;)
 
 ## Initial Version - 0.1
 In the pipeline
+* Search not just contacts, but also buddies whom you already messaged but not present in address book
 * Copy contact information, instead of just sending the message.
 * Multiple Google Accounts
 * Contact names containing special characters might have to be handled
