@@ -6,6 +6,9 @@ Grab the extension present in build directory and enjoy
 
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one and then enter the message you want to send. That's it :)
 
+### Features:
+* Send Gtalk Message/Imessage/SMS to your contacts
+
 ### Note:
 First time, building indexes will take time. From next time, it will be instant
 
@@ -14,7 +17,8 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 This is just the first version. Expect many many bugs to appear ;)
 
 ## Initial Version - 0.1
-To be Done
+In the pipeline
+* Copy contact information, instead of just sending the message.
 * Multiple Google Accounts
 * Contact names containing special characters might have to be handled
 * Mail support
