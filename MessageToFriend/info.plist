@@ -129,7 +129,7 @@ echo "$in" &gt; user.txt</string>
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>tell application "Alfred 2" to search "message: "</string>
+				<string>tell application "Alfred 2" to search "mesg: "</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -148,7 +148,7 @@ echo "$in" &gt; user.txt</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>message:</string>
+				<string>mesg:</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
