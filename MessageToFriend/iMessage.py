@@ -4,9 +4,20 @@ import os
 import subprocess
 
 contactEntryList = []
-name = sys.argv[1]
+searchTerm = sys.argv[1]
 delimiter = "_^_"
 inputfile = "NamesEmailsPhones"
+
+def noContactsFound():
+	print """
+	<items>
+	  <item uid="NoContacts" arg="None" valid="YES" autocomplete="imu">
+	      <title>No Contacts found :(</title>
+	      <subtitle>Tip: Try reducing search terms</subtitle>
+	      <icon>icon.png</icon>
+	   </item>
+	</items>
+	"""
 
 class ContactEntry:
 	xmlTemplate = """
@@ -26,7 +37,10 @@ class ContactEntry:
 		return ContactEntry.xmlTemplate % data
 
 	def __str__(self):
-		return self.name + "" + self.contact + "" + self.xmlTemplate
+		return "Name = " + self.name + "\nContact = " + self.contact + "\nXml=" + self.xmlTemplate
+
+	def __repr__(self):
+		return self.__str__()
 
 	def contains(self, substring):
 		return substring.lower() in self.name.lower() or substring.lower() in self.contact.lower()
@@ -41,25 +55,28 @@ try:
 		entries = f.readlines()
 
 	XMLString = ""
+	contactNameMap = {}
 	for entry in entries:
 		if delimiter in entry:
 			keyValue = entry.rstrip("\n").split(delimiter)
-			contactEntryList.append(ContactEntry(keyValue[0], keyValue[1]))
-
+			contact = keyValue[1]
+			# Remove Facebook, iMessage entries since they are not supported
+			# Also merge duplicates
+			if "chat.facebook.com" not in contact and not contact.startswith("e:"):
+				contactNameMap[contact] = keyValue[0]
+	
+	for contact, name in contactNameMap.items():
+		contactEntryList.append(ContactEntry(name, contact))
+        
 	for contactEntry in contactEntryList:
-		if contactEntry.contains(name):
+		if contactEntry.contains(searchTerm):
 			XMLString = XMLString + "\n" + contactEntry.xmlTemplate
 
-	print "<items> \n" + XMLString + " \n </items>"
+	if XMLString == "":
+		noContactsFound()
+	else:
+		print "<items> \n" + XMLString + " \n </items>"
 except Exception, e:
 	traceback.print_exc()
+	noContactsFound()
 
-	print """
-	<items>
-	  <item uid="NoContacts" arg="None" valid="YES" autocomplete="imu">
-	      <title>Your contact list is empty or broken</title>
-	      <subtitle>You might need to run keyword 'imu'</subtitle>
-	      <icon>icon.png</icon>
-	   </item>
-	</items>
-	"""
