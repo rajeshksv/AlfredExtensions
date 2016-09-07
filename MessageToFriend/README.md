@@ -30,3 +30,4 @@ This is just the first version. Expect many many bugs to appear ;)
 * Non ASCII support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook and others support
 * (Experimental) Try decreasing number of steps to send message
+* And more..... :)))
