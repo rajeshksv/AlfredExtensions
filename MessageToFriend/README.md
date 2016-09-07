@@ -1,7 +1,7 @@
 Send Message to your friends from Alfred.
 
 ### Installation
-Grab the extension present in build directory and enjoy. Current Version is 0.2
+Grab the extension present in build directory and enjoy. Current Version is 0.2 (ALPHA)
 
 ### Usage
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
@@ -15,20 +15,19 @@ Just type msg and then start typing contact name or email or phone number. As yo
 First time, building indexes will take time. From next time, it will be instant
 
 ### Special Note
-Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension
-This is just the first version. Expect many many bugs to appear ;)
+Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension. Expect many many bugs to appear ;)
 
 ### Release Notes
-#### Second Version - 0.2
+#### Second Version - 0.2 (ALPHA)
 ##### Features Added/Removed
  * Multiple Google accounts (Limited support - Both accounts shouldn't be from same domain)
  * Search not just contacts, but also buddies whom you already messaged but not present in address book
 
-#### Initial Version - 0.1
+#### Initial Version - 0.1 (ALPHA)
 ##### Features
  * Send Gtalk Message/SMS to your contacts
 
-##### In the pipeline
+### In the pipeline
 * Copy contact information, instead of just sending the message.
 * Multiple Google Accounts (of same domain)
 * Imessage Support
