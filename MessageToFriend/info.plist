@@ -87,43 +87,6 @@ echo "$in" &gt; user.txt</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>msg</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Updating indexes.. Please Wait.</string>
-				<key>script</key>
-				<string>python iMessage.py "{query}"</string>
-				<key>subtext</key>
-				<string>Type in a name/number/email from your Address Book</string>
-				<key>title</key>
-				<string>iMessage</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -146,7 +109,44 @@ echo "$in" &gt; user.txt</string>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
-				<integer>102</integer>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>msg</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Updating indexes.. Please Wait (Will happen only on first run. Promise!)</string>
+				<key>script</key>
+				<string>python iMessage.py "{query}"</string>
+				<key>subtext</key>
+				<string>Type in a name/number/email from your Address Book/Previous Chats</string>
+				<key>title</key>
+				<string>iMessage</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>4</integer>
 				<key>keyword</key>
 				<string>mesg:</string>
 				<key>queuedelaycustom</key>
@@ -158,12 +158,19 @@ echo "$in" &gt; user.txt</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>script</key>
-				<string>data=$(cat user.txt)
+				<string>message="{query}"
+# escaping invalid xml characters ' " &lt; &gt; &amp;
+validmsg=$(echo "$message" | sed -e 's~&amp;~\&amp;amp;~g' -e 's~&lt;~\&amp;lt;~g'  -e  's~&gt;~\&amp;gt;~g' -e 's~"~\&amp;quot;~g' -e "s~'~\&amp;apos;~g")
+
+contactMetaData=$(cat user.txt)
+contactMetaDataArray=(${contactMetaData//_^_/ })
+contact=${contactMetaDataArray[0]}
+
 cat &lt;&lt; CODE
 &lt;?xml version="1.0"?&gt;
 &lt;items&gt;
-&lt;item uid="iMessage Body" arg="{query}" valid="yes"&gt;
-&lt;title&gt;"To $data : {query}"&lt;/title&gt;
+&lt;item uid="iMessage Body" arg="$validmsg" valid="yes"&gt;
+&lt;title&gt;"To $contact : $validmsg"&lt;/title&gt;
 &lt;subtitle&gt;&lt;/subtitle&gt;
 &lt;icon&gt;icon.png&lt;/icon&gt;
 &lt;/item&gt;
@@ -186,41 +193,19 @@ CODE</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Sent</string>
-				<key>title</key>
-				<string>Message to {query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>4</integer>
 				<key>script</key>
-				<string>data=$(cat user.txt)
+				<string>contactMetaData=$(cat user.txt)
+message="{query}"
 
-osascript sendMessage.applescript "$data" "{query}"
+osascript sendMessage.applescript "$contactMetaData" "$message"
 
-echo $data</string>
+if [[ $? -eq 1 ]];then
+  echo "$data"
+fi</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -228,6 +213,31 @@ echo $data</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Sending Failed....</string>
+				<key>title</key>
+				<string>Message to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -241,17 +251,17 @@ Inspired from iM by Nolan Chan</string>
 		<key>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>440</real>
 		</dict>
 		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>440</real>
 		</dict>
 		<key>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>440</real>
 		</dict>
 		<key>BAB04A88-09FF-4871-8A4E-4B80E83319B9</key>
 		<dict>

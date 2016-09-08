@@ -1,8 +1,15 @@
 on run {targetBuddyContact, targetMessage}
     tell application "Messages"
+	set delimiter to "_^_"
+	-- targetBuddyContact can be abc@gmail.com_^_Gmail or abc@gmail.com or phone number or abc@gmail.com_^_cde@gmail.com
         if targetBuddyContact contains "@"
-		set domain to item 2 of my split(targetBuddyContact, "@")
-		set targetService to my getSenderService(domain)
+		if targetBuddyContact contains delimiter
+			set buddyServiceInfo to my split(targetBuddyContact, delimiter)
+			set serviceMetaData to item 2 of buddyServiceInfo
+			set targetBuddyContact to item 1 of buddyServiceInfo
+		end if
+		-- To be handled. If delimiter is not present. Just show you can't send message
+		set targetService to 1st service whose name is serviceMetaData
 	else 
 		set targetService to service "SMS"
 	end if	
@@ -24,18 +31,3 @@ on split(theString, theDelimiter)
 	-- return the result
 	return theArray
 end split
-
--- Try to get service whose name contains domain. If not return default account
-on getSenderService(domain)
-	tell application "Messages"
-		repeat with svc in services
-			set serviceName to name of svc
-			if serviceName does not start with "E:" then
-				if serviceName contains domain then
-					return svc
-				end if
-			end if
-		end repeat
-		return 1st service whose service type = Jabber
-	end tell
-end getSender

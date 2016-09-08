@@ -21,19 +21,22 @@ def noContactsFound():
 
 class ContactEntry:
 	xmlTemplate = """
-	  <item uid="%(uid)s" arg="%(contact)s">
+	  <item uid="%(uid)s" arg="%(arg)s">
 	      <title>%(name)s</title>
 	      <subtitle>%(contact)s</subtitle>
 	   </item>
 	"""
 
-	def __init__(self, name, contact):
+	def __init__(self, name, contact, service):
 		self.name = name
 		self.contact = contact
-		self.xmlTemplate = self.createXMLfromContact(name, contact)
+		self.xmlTemplate = self.createXMLfromContact(name, contact, service)
 
-	def createXMLfromContact(self, name, contact):
-		data = {'uid': contact, 'contact': contact, 'name': name}
+	def createXMLfromContact(self, name, contact, service):
+		arg = contact
+		if service is not None:
+			arg = contact + delimiter + service
+		data = {'uid': contact, 'arg': arg, 'name': name, 'contact': contact}
 		return ContactEntry.xmlTemplate % data
 
 	def __str__(self):
@@ -47,27 +50,37 @@ class ContactEntry:
  
 try:
 	if not os.path.isfile(inputfile):
+		# Generate the contacts database. Will happen only on first time run.
 		cmd = ["osascript",  "NamesEmailsPhones.scpt"]
 		with open("NamesEmailsPhones","wb") as out, open("stderr","wb") as err:
 			subprocess.Popen(cmd, stdout=out,stderr=err).communicate()
 
 	with open(inputfile) as f:
-		entries = f.readlines()
+		lines = f.readlines()
 
 	XMLString = ""
 	contactNameMap = {}
-	for entry in entries:
-		if delimiter in entry:
-			keyValue = entry.rstrip("\n").split(delimiter)
+	contactServiceMap = {}
+
+	# Parsing lines, removing duplicates
+	for line in lines:
+		if delimiter in line:
+			# Format will be name_^_abc@gmail.com_^_Gmail or name_^_abc@gmail.com_^_ghf@gmail.com or name_^_7251467389_^_SMS
+			keyValue = line.rstrip("\n").split(delimiter)
 			contact = keyValue[1]
-			# Remove Facebook, iMessage entries since they are not supported
+			
+			# Remove Facebook, iMessage lines since they are not supported
 			# Also merge duplicates
 			if "chat.facebook.com" not in contact and not contact.startswith("e:"):
 				contactNameMap[contact] = keyValue[0]
-	
-	for contact, name in contactNameMap.items():
-		contactEntryList.append(ContactEntry(name, contact))
+				if len(keyValue) == 3:
+					contactServiceMap[contact] = keyValue[2]
         
+	# Preparing list of contacts - ContactEntry objects
+	for contact, name in contactNameMap.items():
+		contactEntryList.append(ContactEntry(name, contact, contactServiceMap.get(contact)))
+        
+	# Filtering list of contacts
 	for contactEntry in contactEntryList:
 		if contactEntry.contains(searchTerm):
 			XMLString = XMLString + "\n" + contactEntry.xmlTemplate

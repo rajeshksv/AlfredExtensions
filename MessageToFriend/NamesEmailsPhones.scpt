@@ -6,9 +6,12 @@ set eol to "
 tell application "Messages"
 	repeat with current_service in services
 		repeat with current_buddy in every buddy of current_service
-			set contact_email to handle of current_buddy
-			set contact_name to name of current_buddy
-			set contact_entries to contact_entries & contact_name & eoc & contact_email & eol
+			if status of current_buddy is not equal to unknown
+				set contact_email to handle of current_buddy
+				set contact_name to name of current_buddy
+				set service_name to name of current_service
+				set contact_entries to contact_entries & contact_name & eoc & contact_email & eoc & service_name & eol
+			end if	
 		end repeat
 	end repeat
 end tell
