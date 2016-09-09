@@ -32,4 +32,5 @@ tell application "Contacts"
 	end repeat
 end tell
 
+
 contact_entries

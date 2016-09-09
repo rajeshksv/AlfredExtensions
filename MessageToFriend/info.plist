@@ -87,25 +87,6 @@ echo "$in" &gt; user.txt</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "mesg: "</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.script</string>
-			<key>uid</key>
-			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -137,6 +118,25 @@ echo "$in" &gt; user.txt</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "mesg: "</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -193,6 +193,31 @@ CODE</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Sending Failed....</string>
+				<key>title</key>
+				<string>Message to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -216,31 +241,6 @@ fi</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Sending Failed....</string>
-				<key>title</key>
-				<string>Message to {query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Now Send message to your friend directly from alfred
@@ -251,17 +251,17 @@ Inspired from iM by Nolan Chan</string>
 		<key>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</key>
 		<dict>
 			<key>ypos</key>
-			<real>440</real>
+			<real>210</real>
 		</dict>
 		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
 		<dict>
 			<key>ypos</key>
-			<real>440</real>
+			<real>210</real>
 		</dict>
 		<key>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</key>
 		<dict>
 			<key>ypos</key>
-			<real>440</real>
+			<real>210</real>
 		</dict>
 		<key>BAB04A88-09FF-4871-8A4E-4B80E83319B9</key>
 		<dict>

@@ -1,7 +1,7 @@
 Send Message to your friends from Alfred.
 
 ### Installation
-Grab the extension present in build directory and enjoy. Current Version is 0.3 (ALPHA)
+Grab the extension present in build directory and enjoy. Current Version is 0.3.1 (ALPHA)
 
 ### Usage
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
@@ -18,6 +18,12 @@ First time, building indexes will take time. From next time, it will be instant
 Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension. Expect many many bugs to appear ;)
 
 ### Release Notes
+#### Third Version - 0.3.1 (ALPHA)
+* Small bug fixes. 
+* Duplicate Contacts appearing bug Fix - To some extent, duplicate contacts are merged and shown as one
+* If conversation doesn't exist, it will be created automatically
+* Contact names containing special characters wont cause any issue
+
 #### Third Version - 0.3 (ALPHA)
 ##### Features Added/Removed
 * Bug Fixes, Code cleanup. Build stabilization
@@ -35,9 +41,8 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 ### In the pipeline
 * Copy contact information, instead of just sending the message.
 * Imessage Support
-* Duplicate Contacts appearing
+* Duplicate Contacts appearing - Fixed to some extent. But have to foolproof it
 * Sms mighnot be going to users whose contact number in addressbook doesn't start with +91
-* Contact names containing special characters might have to be handled
 * Non ASCII/Special Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
 * (Experimental) Try decreasing number of steps to send message

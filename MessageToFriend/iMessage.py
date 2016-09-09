@@ -68,6 +68,10 @@ try:
 			# Format will be name_^_abc@gmail.com_^_Gmail or name_^_abc@gmail.com_^_ghf@gmail.com or name_^_7251467389_^_SMS
 			keyValue = line.rstrip("\n").split(delimiter)
 			contact = keyValue[1]
+
+			# Remove unnecessary characters from phone number
+			if "@" not in contact:
+				contact = keyValue[1].translate(None, " !#$%^&*()-=[]\{};'<>/?,.?:")
 			
 			# Remove Facebook, iMessage lines since they are not supported
 			# Also merge duplicates

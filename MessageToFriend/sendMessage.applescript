@@ -1,8 +1,8 @@
 on run {targetBuddyContact, targetMessage}
-    tell application "Messages"
+     tell application "Messages"
 	set delimiter to "_^_"
 	-- targetBuddyContact can be abc@gmail.com_^_Gmail or abc@gmail.com or phone number or abc@gmail.com_^_cde@gmail.com
-        if targetBuddyContact contains "@"
+	if targetBuddyContact contains "@"
 		if targetBuddyContact contains delimiter
 			set buddyServiceInfo to my split(targetBuddyContact, delimiter)
 			set serviceMetaData to item 2 of buddyServiceInfo
@@ -12,12 +12,19 @@ on run {targetBuddyContact, targetMessage}
 		set targetService to 1st service whose name is serviceMetaData
 	else 
 		set targetService to service "SMS"
-	end if	
-        set targetBuddy to buddy targetBuddyContact of targetService
-        send targetMessage to targetBuddy
-    end tell
+		-- Hack to get sms working even with buddies with no previous message history
+		my sendMessage(targetService, targetBuddyContact, "")
+	end if
+	my sendMessage(targetService, targetBuddyContact, targetMessage)
+     end tell
 end run
 
+on sendMessage(targetService, targetBuddyContact, targetMessage)
+	tell application "Messages"
+		set targetBuddy to buddy targetBuddyContact of targetService
+		send targetMessage to targetBuddy
+	end tell 
+end sendMessage
 
 on split(theString, theDelimiter)
 	-- save delimiters to restore old settings
