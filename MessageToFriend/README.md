@@ -9,7 +9,7 @@ Optional Tip: Set country code using mcc (in case SMS sending is failing)
 
 ### Features
 * Send Gtalk Message/SMS to your contacts
-* Multiple Google accounts
+* Multiple Google accounts could be present on the system.
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
 
 ### Note
