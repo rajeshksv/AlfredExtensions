@@ -21,8 +21,8 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 ### Release Notes
 #### Third Version - 0.3.2 (ALPHA)
 * Copy contact information, instead of just sending the message.
-* SMS fails for some contacts (which doesn't have country code). Fixed the bug by automatically adding country code for such contacts(country code is taken fro user). This will eliminate some duplicate contacts as well.
-* Sms mightnot be going to users whose contact number in addressbook doesn't start with country Code
+* SMS fails for some contacts (which doesn't have country code). Fixed the bug by automatically adding country code for such contacts(country code is taken from user). This will eliminate some duplicate contacts as well.
+* [BUG FIXED] Sms mightnot be going to users whose contact number in addressbook doesn't start with country Code
 
 #### Third Version - 0.3.1 (ALPHA)
 * Small bug fixes. 
