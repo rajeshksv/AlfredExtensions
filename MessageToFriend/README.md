@@ -5,7 +5,7 @@ Grab the extension present in build directory and enjoy. Current Version is 0.3.
 
 ### Usage
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
-Optional Tip: Set country code using mcc for successfully sending SMS 
+Optional Tip: Set country code using mcc (in case SMS sending is failing) 
 
 ### Features
 * Send Gtalk Message/SMS to your contacts
