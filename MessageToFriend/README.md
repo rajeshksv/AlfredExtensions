@@ -1,10 +1,11 @@
 Send Message to your friends from Alfred.
 
 ### Installation
-Grab the extension present in build directory and enjoy. Current Version is 0.3.1 (ALPHA)
+Grab the extension present in build directory and enjoy. Current Version is 0.3.2 (ALPHA)
 
 ### Usage
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
+Optional Tip: Set country code using mcc for successfully sending SMS 
 
 ### Features
 * Send Gtalk Message/SMS to your contacts
@@ -12,12 +13,17 @@ Just type msg and then start typing contact name or email or phone number. As yo
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
 
 ### Note
-First time, building indexes will take time. From next time, it will be instant
+First time, building indexes will take time. From next time, it will be instant. 
 
 ### Special Note
 Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension. Expect many many bugs to appear ;)
 
 ### Release Notes
+#### Third Version - 0.3.2 (ALPHA)
+* Copy contact information, instead of just sending the message.
+* SMS fails for some contacts (which doesn't have country code). Fixed the bug by automatically adding country code for such contacts(country code is taken fro user). This will eliminate some duplicate contacts as well.
+* Sms mightnot be going to users whose contact number in addressbook doesn't start with country Code
+
 #### Third Version - 0.3.1 (ALPHA)
 * Small bug fixes. 
 * Duplicate Contacts appearing bug Fix - To some extent, duplicate contacts are merged and shown as one
@@ -39,10 +45,8 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 * Send Gtalk Message/SMS to your contacts
 
 ### In the pipeline
-* Copy contact information, instead of just sending the message.
 * Imessage Support
 * Duplicate Contacts appearing - Fixed to some extent. But have to foolproof it
-* Sms mighnot be going to users whose contact number in addressbook doesn't start with +91
 * Non ASCII/Special Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
 * (Experimental) Try decreasing number of steps to send message

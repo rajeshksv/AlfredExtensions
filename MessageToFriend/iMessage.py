@@ -4,6 +4,7 @@ import os
 import subprocess
 
 contactEntryList = []
+countryCodeConfigFile = "countryCode"
 searchTerm = sys.argv[1]
 delimiter = "_^_"
 inputfile = "NamesEmailsPhones"
@@ -69,10 +70,15 @@ try:
 			keyValue = line.rstrip("\n").split(delimiter)
 			contact = keyValue[1]
 
-			# Remove unnecessary characters from phone number
+			# Parsing and cleaning up phone numbers
 			if "@" not in contact:
 				contact = keyValue[1].translate(None, " !#$%^&*()-=[]\{};'<>/?,.?:")
-			
+				if not contact.startswith("+") and os.path.isfile(countryCodeConfigFile):
+					with open(countryCodeConfigFile) as cc:
+						countryCode = cc.readlines()
+						contact = ''.join(countryCode).strip("\n") + contact.lstrip("0") 
+
+
 			# Remove Facebook, iMessage lines since they are not supported
 			# Also merge duplicates
 			if "chat.facebook.com" not in contact and not contact.startswith("e:"):

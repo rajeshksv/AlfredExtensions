@@ -19,11 +19,33 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>944B4117-7F56-4B6B-A6AB-22E70B2C616E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6FC8E8F7-1C19-4790-B1DE-F33EBA424098</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>BCCB236D-4F08-4C07-B275-9208342971AB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F6D7CBE3-E883-429B-98E4-21CF84C89121</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -40,12 +62,31 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>944B4117-7F56-4B6B-A6AB-22E70B2C616E</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy contact information to clipboard</string>
+			</dict>
 		</array>
 		<key>EE1447E8-5DAA-4B21-AAEB-71243564494D</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>F6D7CBE3-E883-429B-98E4-21CF84C89121</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -81,6 +122,25 @@ echo "$in" &gt; user.txt</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>EE1447E8-5DAA-4B21-AAEB-71243564494D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "mesg: "</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -127,16 +187,33 @@ echo "$in" &gt; user.txt</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>tell application "Alfred 2" to search "mesg: "</string>
+				<string>contact="{query}"
+contactMetaDataArray=(${contact//_^_/ })
+echo ${contactMetaDataArray[0]}</string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.script</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
+			<string>944B4117-7F56-4B6B-A6AB-22E70B2C616E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>6FC8E8F7-1C19-4790-B1DE-F33EBA424098</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -193,6 +270,34 @@ CODE</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>contactMetaData=$(cat user.txt)
+contactMetaDataArray=(${contactMetaData//_^_/ })
+contact=${contactMetaDataArray[0]}
+message="{query}"
+
+osascript sendMessage.applescript "$contactMetaData" "$message"
+
+if [[ $? -eq 1 ]];then
+  echo "$contact"
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -204,7 +309,7 @@ CODE</string>
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>Sending Failed....</string>
+				<string>Sending Failed. Try setting up country code using mcc</string>
 				<key>title</key>
 				<string>Message to {query}</string>
 			</dict>
@@ -218,26 +323,108 @@ CODE</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>mcc</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string>code="{query}"
+if [[ ${#code} &gt; 0 ]];then
+echo '&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+  &lt;item uid="{query}" arg="{query}"&gt;
+    &lt;title&gt;Setting up Country code to {query} (Press enter to confirm)&lt;/title&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;'
+elif [[ -f countryCode ]];then
+	code=$(cat countryCode)
+	echo '&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+  &lt;item uid="abc"&gt;
+    &lt;title&gt;Country Code is '$code' Type new one if you wish to change&lt;/title&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;'
+else
+	code=$(cat countryCode)
+	echo '&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+  &lt;item uid="abc"&gt;
+    &lt;title&gt;Please set country code Ex: +91&lt;/title&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;'
+fi</string>
+				<key>subtext</key>
+				<string>Ex: +91 (For sms to work properly with msg, please enter your country code)</string>
+				<key>title</key>
+				<string>Enter your country code:</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BCCB236D-4F08-4C07-B275-9208342971AB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>4</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>contactMetaData=$(cat user.txt)
-message="{query}"
+				<string>echo "{query}" &gt; countryCode
 
-osascript sendMessage.applescript "$contactMetaData" "$message"
-
-if [[ $? -eq 1 ]];then
-  echo "$data"
-fi</string>
+echo "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+			<string>F6D7CBE3-E883-429B-98E4-21CF84C89121</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Now you can try sending sms again</string>
+				<key>title</key>
+				<string>Country Code is set to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -251,22 +438,42 @@ Inspired from iM by Nolan Chan</string>
 		<key>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</key>
 		<dict>
 			<key>ypos</key>
-			<real>210</real>
+			<real>340</real>
 		</dict>
 		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
 		<dict>
 			<key>ypos</key>
-			<real>210</real>
+			<real>340</real>
+		</dict>
+		<key>6FC8E8F7-1C19-4790-B1DE-F33EBA424098</key>
+		<dict>
+			<key>ypos</key>
+			<real>170</real>
+		</dict>
+		<key>944B4117-7F56-4B6B-A6AB-22E70B2C616E</key>
+		<dict>
+			<key>ypos</key>
+			<real>170</real>
 		</dict>
 		<key>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</key>
 		<dict>
 			<key>ypos</key>
-			<real>210</real>
+			<real>340</real>
 		</dict>
 		<key>BAB04A88-09FF-4871-8A4E-4B80E83319B9</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>BCCB236D-4F08-4C07-B275-9208342971AB</key>
+		<dict>
+			<key>ypos</key>
+			<real>460</real>
+		</dict>
+		<key>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</key>
+		<dict>
+			<key>ypos</key>
+			<real>460</real>
 		</dict>
 		<key>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</key>
 		<dict>
@@ -277,6 +484,11 @@ Inspired from iM by Nolan Chan</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>F6D7CBE3-E883-429B-98E4-21CF84C89121</key>
+		<dict>
+			<key>ypos</key>
+			<real>460</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
