@@ -1,4 +1,4 @@
-Send Message to your friends from Alfred.
+Send Message to your friends from Alfred2.
 
 ### Installation
 Grab the extension present in build directory and enjoy. Current Version is 0.3.2 (ALPHA)
