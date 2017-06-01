@@ -46,6 +46,7 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 * Send Gtalk Message/SMS to your contacts
 
 ### In the pipeline
+* Send message to last chat
 * Imessage Support
 * Non ASCII Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
