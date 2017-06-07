@@ -47,6 +47,7 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 
 ### In the pipeline
 * Send message to last chat
+* Copy last message received in clipboard
 * Imessage Support
 * Non ASCII Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
