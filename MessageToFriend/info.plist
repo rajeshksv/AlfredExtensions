@@ -4,15 +4,35 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.rajeshksv.messaging</string>
-	<key>category</key>
-	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
+		<key>52F1662B-2E09-431B-8A5D-3F60ADB6895F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>720C5BBD-07C7-459F-AB8A-BD29A56BEF20</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>7BB79FC7-B295-4734-9A16-9DDA10C135AB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>52F1662B-2E09-431B-8A5D-3F60ADB6895F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -93,6 +113,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>FD4410FC-4FD8-4EB2-9FE5-B621AE6E5621</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3608E4E8-5C45-4C05-B7D1-8ADD93B13404</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Rajesh KSV</string>
@@ -104,46 +135,6 @@
 	<string>Message to Friend</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>in=$(echo "{query}" | tr -d "\\")
-
-echo "$in" &gt; user.txt</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>EE1447E8-5DAA-4B21-AAEB-71243564494D</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "mesg: "</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.script</string>
-			<key>uid</key>
-			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -187,18 +178,37 @@ echo "$in" &gt; user.txt</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>102</integer>
+				<integer>127</integer>
 				<key>script</key>
-				<string>contact="{query}"
-contactMetaDataArray=(${contact//_^_/ })
-echo ${contactMetaDataArray[0]}</string>
+				<string>in=$(echo "{query}" | tr -d "\\")
+
+echo "$in" &gt; user.txt</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>944B4117-7F56-4B6B-A6AB-22E70B2C616E</string>
+			<string>EE1447E8-5DAA-4B21-AAEB-71243564494D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "mesg: "</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>BAB04A88-09FF-4871-8A4E-4B80E83319B9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -214,6 +224,27 @@ echo ${contactMetaDataArray[0]}</string>
 			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
 			<string>6FC8E8F7-1C19-4790-B1DE-F33EBA424098</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>contact="{query}"
+contactMetaDataArray=(${contact//_^_/ })
+echo ${contactMetaDataArray[0]}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>944B4117-7F56-4B6B-A6AB-22E70B2C616E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -270,6 +301,31 @@ CODE</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Sending Failed. Try setting up country code using mcc</string>
+				<key>title</key>
+				<string>Message to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -301,7 +357,7 @@ fi</string>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
-				<true/>
+				<false/>
 				<key>output</key>
 				<integer>0</integer>
 				<key>removeextension</key>
@@ -309,14 +365,35 @@ fi</string>
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>Sending Failed. Try setting up country code using mcc</string>
+				<string>Now you can try sending sms again</string>
 				<key>title</key>
-				<string>Message to {query}</string>
+				<string>Country Code is set to {query}</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
+			<string>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>echo "{query}" &gt; countryCode
+
+echo "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F6D7CBE3-E883-429B-98E4-21CF84C89121</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -385,27 +462,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>echo "{query}" &gt; countryCode
-
-echo "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F6D7CBE3-E883-429B-98E4-21CF84C89121</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -416,15 +472,158 @@ echo "{query}"</string>
 				<false/>
 				<key>sticky</key>
 				<false/>
-				<key>text</key>
-				<string>Now you can try sending sms again</string>
 				<key>title</key>
-				<string>Country Code is set to {query}</string>
+				<string>Message Contacts Database is built</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</string>
+			<string>3608E4E8-5C45-4C05-B7D1-8ADD93B13404</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>msgbuild</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Building the database. This will take 1-2 mins...</string>
+				<key>script</key>
+				<string>osascript NamesEmailsPhones.scpt &gt; NamesEmailsPhones
+
+cat &lt;&lt; CODE
+&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+&lt;item uid="msgbuild" arg="$validmsg" valid="yes"&gt;
+&lt;title&gt;Done. Database is updated.&lt;/title&gt;
+&lt;subtitle&gt;&lt;/subtitle&gt;
+&lt;icon&gt;icon.png&lt;/icon&gt;
+&lt;/item&gt;
+&lt;/items&gt;
+CODE</string>
+				<key>subtext</key>
+				<string>Initialize/reload the database</string>
+				<key>title</key>
+				<string>Build Message To Friend Database</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FD4410FC-4FD8-4EB2-9FE5-B621AE6E5621</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>..</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>script</key>
+				<string>message="{query}"
+# escaping invalid xml characters ' " &lt; &gt; &amp;
+validmsg=$(echo "$message" | sed -e 's~&amp;~\&amp;amp;~g' -e 's~&lt;~\&amp;lt;~g'  -e  's~&gt;~\&amp;gt;~g' -e 's~"~\&amp;quot;~g' -e "s~'~\&amp;apos;~g")
+
+last_recepient_code=$(sqlite3 ~/Library/Messages/chat.db "select (id || '_^_' || account) from message join handle on handle_id = handle.ROWID order by message.ROWID desc limit 1")
+
+last_recepient=$(echo "$last_recepient_code" | awk -F '\\_\\^\\_' '{print $1}')
+
+echo "
+&lt;items&gt;
+&lt;item uid=\"1\" arg=\"$validmsg@@@@$last_recepient_code\"&gt;
+&lt;title&gt;Sending message \"$validmsg\" to \"$last_recepient\"&lt;/title&gt;
+&lt;/item&gt;
+&lt;/items&gt;"</string>
+				<key>title</key>
+				<string>Reply to last message</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7BB79FC7-B295-4734-9A16-9DDA10C135AB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query="{query}"
+
+msg=$(echo $query | awk -F '@@@@' '{print $1}')
+recepient=$(echo $query | awk -F '@@@@' '{print $2}')
+
+osascript sendMessage.applescript "$recepient" "$msg"
+
+if [[ $? -eq 0 ]];then
+  echo "Sent" "$msg" to "$recepient"
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>52F1662B-2E09-431B-8A5D-3F60ADB6895F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>720C5BBD-07C7-459F-AB8A-BD29A56BEF20</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -440,6 +639,16 @@ Inspired from iM by Nolan Chan</string>
 			<key>ypos</key>
 			<real>340</real>
 		</dict>
+		<key>3608E4E8-5C45-4C05-B7D1-8ADD93B13404</key>
+		<dict>
+			<key>ypos</key>
+			<real>580</real>
+		</dict>
+		<key>52F1662B-2E09-431B-8A5D-3F60ADB6895F</key>
+		<dict>
+			<key>ypos</key>
+			<real>700</real>
+		</dict>
 		<key>672D90B4-48D5-477F-A00C-BC9F53225048</key>
 		<dict>
 			<key>ypos</key>
@@ -449,6 +658,16 @@ Inspired from iM by Nolan Chan</string>
 		<dict>
 			<key>ypos</key>
 			<real>170</real>
+		</dict>
+		<key>720C5BBD-07C7-459F-AB8A-BD29A56BEF20</key>
+		<dict>
+			<key>ypos</key>
+			<real>700</real>
+		</dict>
+		<key>7BB79FC7-B295-4734-9A16-9DDA10C135AB</key>
+		<dict>
+			<key>ypos</key>
+			<real>700</real>
 		</dict>
 		<key>944B4117-7F56-4B6B-A6AB-22E70B2C616E</key>
 		<dict>
@@ -489,6 +708,11 @@ Inspired from iM by Nolan Chan</string>
 		<dict>
 			<key>ypos</key>
 			<real>460</real>
+		</dict>
+		<key>FD4410FC-4FD8-4EB2-9FE5-B621AE6E5621</key>
+		<dict>
+			<key>ypos</key>
+			<real>580</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
