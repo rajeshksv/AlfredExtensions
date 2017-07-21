@@ -1,7 +1,7 @@
 Send Message to your friends from Alfred 2.
 
 ### Installation
-Grab the extension present in build directory and enjoy. Current Version is 0.3.2 (ALPHA)
+Grab the extension present in build directory and enjoy. Current Version is 0.3.3 (ALPHA)
 
 ### Usage
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
@@ -12,12 +12,17 @@ Optional Tip: Set country code using mcc (in case SMS sending is failing)
 * Send Gtalk Message/SMS to your contacts
 * Multiple Google accounts could be present on the system.
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
+* Reply to last received message directly using ..
 
 ### Note
 First time, building indexes will take time. From next time, it will be instant. 
 
 ### Special Note
 Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension. Expect many many bugs to appear ;)
+
+### Release Notes
+#### Third Version - 0.3.3 (ALPHA)
+* Reply to last received message using ..
 
 ### Release Notes
 #### Third Version - 0.3.2 (ALPHA)
@@ -46,7 +51,6 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 * Send Gtalk Message/SMS to your contacts
 
 ### In the pipeline
-* Send message to last chat
 * Copy last message received in clipboard
 * Imessage Support
 * Non ASCII Character support for contacts
