@@ -24,30 +24,30 @@ class ContactEntry:
 	xmlTemplate = """
 	  <item uid="%(uid)s" arg="%(arg)s">
 	      <title>%(name)s</title>
-	      <subtitle>%(contact)s</subtitle>
+	      <subtitle>%(contactId)s</subtitle>
 	   </item>
 	"""
 
-	def __init__(self, name, contact, service):
+	def __init__(self, name, contactId, service):
 		self.name = name
-		self.contact = contact
-		self.xmlTemplate = self.createXMLfromContact(name, contact, service)
+		self.contactId = contactId
+		self.xmlTemplate = self.createXMLfromContact(name, contactId, service)
 
-	def createXMLfromContact(self, name, contact, service):
-		arg = contact
+	def createXMLfromContact(self, name, contactId, service):
+		arg = contactId
 		if service is not None:
-			arg = contact + delimiter + service
-		data = {'uid': contact, 'arg': arg, 'name': name, 'contact': contact}
+			arg = contactId + delimiter + service
+		data = {'uid': contactId, 'arg': arg, 'name': name, 'contactId': contactId}
 		return ContactEntry.xmlTemplate % data
 
 	def __str__(self):
-		return "Name = " + self.name + "\nContact = " + self.contact + "\nXml=" + self.xmlTemplate
+		return "Name = " + self.name + "\nContact = " + self.contactId + "\nXml=" + self.xmlTemplate
 
 	def __repr__(self):
 		return self.__str__()
 
 	def contains(self, substring):
-		return substring.lower() in self.name.lower() or substring.lower() in self.contact.lower()
+		return substring.lower() in self.name.lower() or substring.lower() in self.contactId.lower()
  
 try:
 	if not os.path.isfile(inputfile):
@@ -60,35 +60,36 @@ try:
 		lines = f.readlines()
 
 	XMLString = ""
-	contactNameMap = {}
-	contactServiceMap = {}
+	contactIdNameMap = {}
+	contactIdServiceMap = {}
 
 	# Parsing lines, removing duplicates
 	for line in lines:
 		if delimiter in line:
 			# Format will be name_^_abc@gmail.com_^_Gmail or name_^_abc@gmail.com_^_ghf@gmail.com or name_^_7251467389_^_SMS
+                        # contactId can be contact's email id or phone number
 			keyValue = line.rstrip("\n").split(delimiter)
-			contact = keyValue[1]
+			contactId = keyValue[1]
 
 			# Parsing and cleaning up phone numbers
-			if "@" not in contact:
-				contact = keyValue[1].translate(None, " !#$%^&*()-=[]\{};'<>/?,.?:")
-				if not contact.startswith("+") and os.path.isfile(countryCodeConfigFile):
+			if "@" not in contactId:
+				contactId = keyValue[1].translate(None, " !#$%^&*()-=[]\{};'<>/?,.?:")
+				if not contactId.startswith("+") and os.path.isfile(countryCodeConfigFile):
 					with open(countryCodeConfigFile) as cc:
 						countryCode = cc.readlines()
-						contact = ''.join(countryCode).strip("\n") + contact.lstrip("0") 
+						contactId = ''.join(countryCode).strip("\n") + contactId.lstrip("0") 
 
 
 			# Remove Facebook, iMessage lines since they are not supported
 			# Also merge duplicates
-			if "chat.facebook.com" not in contact and not contact.startswith("e:"):
-				contactNameMap[contact] = keyValue[0]
+			if "chat.facebook.com" not in contactId and not contactId.startswith("e:"):
+				contactIdNameMap[contactId] = keyValue[0]
 				if len(keyValue) == 3:
-					contactServiceMap[contact] = keyValue[2]
+					contactIdServiceMap[contactId] = keyValue[2]
         
 	# Preparing list of contacts - ContactEntry objects
-	for contact, name in contactNameMap.items():
-		contactEntryList.append(ContactEntry(name, contact, contactServiceMap.get(contact)))
+	for contactId, name in contactIdNameMap.items():
+		contactEntryList.append(ContactEntry(name, contactId, contactIdServiceMap.get(contactId)))
         
 	# Filtering list of contacts
 	for contactEntry in contactEntryList:

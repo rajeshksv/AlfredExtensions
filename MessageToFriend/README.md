@@ -1,18 +1,16 @@
-Send Message to your friends from Alfred 2.
+Send Message to your friends from Alfred.
 
 ### Installation
-Grab the extension present in build directory and enjoy. Current Version is 0.3.3 (ALPHA)
+Grab the extension present in build directory and enjoy. Current Version is 0.3.2 (ALPHA)
 
 ### Usage
 Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
-
-Optional Tip: Set country code using mcc (in case SMS sending is failing) 
+Optional Tip: Set country code using mcc for successfully sending SMS 
 
 ### Features
 * Send Gtalk Message/SMS to your contacts
-* Multiple Google accounts could be present on the system.
+* Multiple Google accounts
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
-* Reply to last received message directly using ..
 
 ### Note
 First time, building indexes will take time. From next time, it will be instant. 
@@ -21,14 +19,10 @@ First time, building indexes will take time. From next time, it will be instant.
 Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension. Expect many many bugs to appear ;)
 
 ### Release Notes
-#### Third Version - 0.3.3 (ALPHA)
-* Reply to last received message using ..
-
-### Release Notes
 #### Third Version - 0.3.2 (ALPHA)
-* Cmd+Selecting contact will copy contact information to clipboard.
-* SMS was failing for some contacts (which doesn't have country code attached to phone number). Fixed the bug by automatically adding country code for such contacts(country code is taken from user input)
-* Duplicate Contacts appearing bug fix.
+* Copy contact information, instead of just sending the message.
+* SMS fails for some contacts (which doesn't have country code). Fixed the bug by automatically adding country code for such contacts(country code is taken fro user). This will eliminate some duplicate contacts as well.
+* Sms mightnot be going to users whose contact number in addressbook doesn't start with country Code
 
 #### Third Version - 0.3.1 (ALPHA)
 * Small bug fixes. 
@@ -51,10 +45,9 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 * Send Gtalk Message/SMS to your contacts
 
 ### In the pipeline
-* Copy last message received in clipboard
 * Imessage Support
-* Non ASCII Character support for contacts
+* Duplicate Contacts appearing - Fixed to some extent. But have to foolproof it
+* Non ASCII/Special Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
 * (Experimental) Try decreasing number of steps to send message
-* Recommendations of message to be sent (May be current URL of google chrome or clipboard entries etc)
 * And more..... :)))

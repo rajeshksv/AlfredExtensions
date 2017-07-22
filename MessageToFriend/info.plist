@@ -486,17 +486,17 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>keyword</key>
 				<string>msgbuild</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>10</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
@@ -548,20 +548,7 @@ CODE</string>
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>script</key>
-				<string>message="{query}"
-# escaping invalid xml characters ' " &lt; &gt; &amp;
-validmsg=$(echo "$message" | sed -e 's~&amp;~\&amp;amp;~g' -e 's~&lt;~\&amp;lt;~g'  -e  's~&gt;~\&amp;gt;~g' -e 's~"~\&amp;quot;~g' -e "s~'~\&amp;apos;~g")
-
-last_recepient_code=$(sqlite3 ~/Library/Messages/chat.db "select (id || '_^_' || account) from message join handle on handle_id = handle.ROWID order by message.ROWID desc limit 1")
-
-last_recepient=$(echo "$last_recepient_code" | awk -F '\\_\\^\\_' '{print $1}')
-
-echo "
-&lt;items&gt;
-&lt;item uid=\"1\" arg=\"$validmsg@@@@$last_recepient_code\"&gt;
-&lt;title&gt;Sending message \"$validmsg\" to \"$last_recepient\"&lt;/title&gt;
-&lt;/item&gt;
-&lt;/items&gt;"</string>
+				<string>bash replyToLastRecepient "{query}"</string>
 				<key>title</key>
 				<string>Reply to last message</string>
 				<key>type</key>

@@ -1,0 +1,23 @@
+if [[ ! -f NamesEmailsPhones ]];then
+	echo "<items><item><title>Please run msgbuild first</title></item></items>"
+	exit
+fi
+
+message=$1
+
+# escaping invalid xml characters ' " < > &
+validmsg=$(echo "$message" | sed -e 's~&~\&amp;~g' -e 's~<~\&lt;~g'  -e  's~>~\&gt;~g' -e 's~"~\&quot;~g' -e "s~'~\&apos;~g")
+last_recepient_code=$(sqlite3 ~/Library/Messages/chat.db "select (id || '_^_' || account) from message join handle on handle_id = handle.ROWID order by message.ROWID desc limit 1")
+last_recepient=$(echo "$last_recepient_code" | awk -F '\\_\\^\\_' '{print $1}')
+better_last_recepient_code=$(grep $last_recepient NamesEmailsPhones | head -n 1)
+
+if [[ "$better_last_recepient_code" != "" ]];then
+	last_recepient_code=$(echo "$better_last_recepient_code" | awk -F '\\_\\^\\_' '{print $2 "_^_" $3}')
+fi
+
+echo "
+<items>
+<item uid=\"1\" arg=\"$validmsg@@@@$last_recepient_code\">
+<title>Sending message \"$validmsg\" to \"$last_recepient\"</title>
+</item>
+</items>"
