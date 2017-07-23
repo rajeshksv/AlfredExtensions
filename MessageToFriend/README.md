@@ -13,6 +13,7 @@ Optional Tip: Set country code using mcc (in case SMS sending is failing)
 * Multiple Google accounts could be present on the system.
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
 * Reply to last received message directly using ..
+* Copy last received message using ...
 
 ### Note
 First time, building indexes will take time. From next time, it will be instant. 
@@ -23,6 +24,7 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 ### Release Notes
 #### Third Version - 0.3.3 (ALPHA)
 * Reply to last received message using ..
+* Copy last received message using ...
 
 ### Release Notes
 #### Third Version - 0.3.2 (ALPHA)
@@ -51,10 +53,12 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 * Send Gtalk Message/SMS to your contacts
 
 ### In the pipeline
-* Copy last message received in clipboard
 * Imessage Support
 * Non ASCII Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
 * (Experimental) Try decreasing number of steps to send message
 * Recommendations of message to be sent (May be current URL of google chrome or clipboard entries etc)
 * And more..... :)))
+
+### Bugs
+* First time to build database, contacts app must be open already sometimes

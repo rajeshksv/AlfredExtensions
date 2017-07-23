@@ -61,6 +61,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>B77AB638-48EE-44B5-B639-DB1E992B3BAB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FA0B92F3-7F12-4B02-A89D-B1D727FD3E59</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>BCCB236D-4F08-4C07-B275-9208342971AB</key>
 		<array>
 			<dict>
@@ -113,6 +124,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>FA0B92F3-7F12-4B02-A89D-B1D727FD3E59</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>900E599D-F299-4961-9BE7-94243DD8EC7D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>FD4410FC-4FD8-4EB2-9FE5-B621AE6E5621</key>
 		<array>
 			<dict>
@@ -135,43 +157,6 @@
 	<string>Message to Friend</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>msg</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Updating indexes.. Please Wait (Will happen only on first run. Promise!)</string>
-				<key>script</key>
-				<string>python iMessage.py "{query}"</string>
-				<key>subtext</key>
-				<string>Type in a name/number/email from your Address Book/Previous Chats</string>
-				<key>title</key>
-				<string>iMessage</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -215,15 +200,37 @@ echo "$in" &gt; user.txt</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>msg</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Updating indexes.. Please Wait (Will happen only on first run. Promise!)</string>
+				<key>script</key>
+				<string>python iMessage.py "{query}"</string>
+				<key>subtext</key>
+				<string>Type in a name/number/email from your Address Book/Previous Chats</string>
+				<key>title</key>
+				<string>iMessage</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>6FC8E8F7-1C19-4790-B1DE-F33EBA424098</string>
+			<string>E21C6BB2-3925-4F3D-A8FD-AA373B50C865</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -245,6 +252,74 @@ echo ${contactMetaDataArray[0]}</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>944B4117-7F56-4B6B-A6AB-22E70B2C616E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>6FC8E8F7-1C19-4790-B1DE-F33EBA424098</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>contactMetaData=$(cat user.txt)
+contactMetaDataArray=(${contactMetaData//_^_/ })
+contact=${contactMetaDataArray[0]}
+message="{query}"
+
+osascript sendMessage.applescript "$contactMetaData" "$message"
+
+if [[ $? -eq 1 ]];then
+  echo "$contact"
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Sending Failed. Try setting up country code using mcc</string>
+				<key>title</key>
+				<string>Message to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -295,84 +370,6 @@ CODE</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>ADCD7CE1-9E89-42C1-97E1-CDC8DBBAB2DF</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Sending Failed. Try setting up country code using mcc</string>
-				<key>title</key>
-				<string>Message to {query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>2BE705CC-7BB8-4139-9C18-6DFEDB9E6EA6</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>contactMetaData=$(cat user.txt)
-contactMetaDataArray=(${contactMetaData//_^_/ })
-contact=${contactMetaDataArray[0]}
-message="{query}"
-
-osascript sendMessage.applescript "$contactMetaData" "$message"
-
-if [[ $? -eq 1 ]];then
-  echo "$contact"
-fi</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>672D90B4-48D5-477F-A00C-BC9F53225048</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Now you can try sending sms again</string>
-				<key>title</key>
-				<string>Country Code is set to {query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -472,13 +469,15 @@ fi</string>
 				<false/>
 				<key>sticky</key>
 				<false/>
+				<key>text</key>
+				<string>Now you can try sending sms again</string>
 				<key>title</key>
-				<string>Message Contacts Database is built</string>
+				<string>Country Code is set to {query}</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>3608E4E8-5C45-4C05-B7D1-8ADD93B13404</string>
+			<string>D436B71D-F78A-44B0-B2BD-517FC6E02D2F</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -533,6 +532,29 @@ CODE</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>Message Contacts Database is built</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3608E4E8-5C45-4C05-B7D1-8ADD93B13404</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -560,6 +582,29 @@ CODE</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>7BB79FC7-B295-4734-9A16-9DDA10C135AB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>720C5BBD-07C7-459F-AB8A-BD29A56BEF20</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -594,23 +639,65 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>...</string>
+				<key>text</key>
+				<string>Press enter to copy last received message into clipboard</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B77AB638-48EE-44B5-B639-DB1E992B3BAB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
-				<true/>
+				<false/>
 				<key>output</key>
 				<integer>0</integer>
 				<key>removeextension</key>
 				<false/>
 				<key>sticky</key>
 				<false/>
+				<key>text</key>
+				<string>into clipboard</string>
 				<key>title</key>
-				<string>{query}</string>
+				<string>Last message received is copied</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>720C5BBD-07C7-459F-AB8A-BD29A56BEF20</string>
+			<string>900E599D-F299-4961-9BE7-94243DD8EC7D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>sqlite3 ~/Library/Messages/chat.db "select text from message where is_delivered = 1 order by ROWID desc limit 1;" | pbcopy
+
+echo "&lt;items&gt;&lt;item uid='1'&gt;&lt;title&gt;Press enter to copy last received message&lt;/title&gt;&lt;/item&gt;&lt;/items&gt;"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FA0B92F3-7F12-4B02-A89D-B1D727FD3E59</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -656,6 +743,11 @@ Inspired from iM by Nolan Chan</string>
 			<key>ypos</key>
 			<real>700</real>
 		</dict>
+		<key>900E599D-F299-4961-9BE7-94243DD8EC7D</key>
+		<dict>
+			<key>ypos</key>
+			<real>940</real>
+		</dict>
 		<key>944B4117-7F56-4B6B-A6AB-22E70B2C616E</key>
 		<dict>
 			<key>ypos</key>
@@ -665,6 +757,11 @@ Inspired from iM by Nolan Chan</string>
 		<dict>
 			<key>ypos</key>
 			<real>340</real>
+		</dict>
+		<key>B77AB638-48EE-44B5-B639-DB1E992B3BAB</key>
+		<dict>
+			<key>ypos</key>
+			<real>940</real>
 		</dict>
 		<key>BAB04A88-09FF-4871-8A4E-4B80E83319B9</key>
 		<dict>
@@ -695,6 +792,11 @@ Inspired from iM by Nolan Chan</string>
 		<dict>
 			<key>ypos</key>
 			<real>460</real>
+		</dict>
+		<key>FA0B92F3-7F12-4B02-A89D-B1D727FD3E59</key>
+		<dict>
+			<key>ypos</key>
+			<real>940</real>
 		</dict>
 		<key>FD4410FC-4FD8-4EB2-9FE5-B621AE6E5621</key>
 		<dict>
