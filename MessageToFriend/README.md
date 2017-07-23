@@ -22,34 +22,30 @@ First time, building indexes will take time. From next time, it will be instant.
 Inspired from my fav extension - IM by NolanChan. But for some reason, he abondoned it. Tried to tinker a bit, but then realized its easier to rewrite. Hence this extension. Expect many many bugs to appear ;)
 
 ### Release Notes
-#### Third Version - 0.3.3 (ALPHA)
+#### Sixth Release - 0.3.3 (ALPHA)
 * Reply to last received message using ..
 * Copy last received message using ...
 
-### Release Notes
-#### Third Version - 0.3.2 (ALPHA)
+#### Fifth Release - 0.3.2 (ALPHA)
 * Cmd+Selecting contact will copy contact information to clipboard.
 * SMS was failing for some contacts (which doesn't have country code attached to phone number). Fixed the bug by automatically adding country code for such contacts(country code is taken from user input)
 * Duplicate Contacts appearing bug fix.
 
-#### Third Version - 0.3.1 (ALPHA)
+#### Fourth Release - 0.3.1 (ALPHA)
 * Small bug fixes. 
 * Duplicate Contacts appearing bug Fix - To some extent, duplicate contacts are merged and shown as one
 * If conversation doesn't exist, it will be created automatically
 * Contact names containing special characters wont cause any issue
 
-#### Third Version - 0.3 (ALPHA)
-##### Features Added/Removed
+#### Third Release - 0.3 (ALPHA)
 * Bug Fixes, Code cleanup. Build stabilization
 * Multiple Accounts. Full support. Multiple Accounts can be from same domain as well.
 
-#### Second Version - 0.2 (ALPHA)
-##### Features Added/Removed
+#### Second Release - 0.2 (ALPHA)
 * Multiple Google Accounts (Limited support - Both accounts shouldn't be from same domain)
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
 
-#### Initial Version - 0.1 (ALPHA)
-##### Features
+#### Initial Release - 0.1 (ALPHA)
 * Send Gtalk Message/SMS to your contacts
 
 ### In the pipeline
