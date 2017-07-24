@@ -572,7 +572,7 @@ CODE</string>
 				<key>script</key>
 				<string>bash replyToLastRecepient "{query}"</string>
 				<key>title</key>
-				<string>Reply to last message</string>
+				<string>Reply to last conversation</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -644,7 +644,7 @@ fi</string>
 				<key>keyword</key>
 				<string>...</string>
 				<key>text</key>
-				<string>Press enter to copy last received message into clipboard</string>
+				<string>Copy last received message into clipboard</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -688,9 +688,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>sqlite3 ~/Library/Messages/chat.db "select text from message where is_delivered = 1 order by ROWID desc limit 1;" | pbcopy
-
-echo "&lt;items&gt;&lt;item uid='1'&gt;&lt;title&gt;Press enter to copy last received message&lt;/title&gt;&lt;/item&gt;&lt;/items&gt;"</string>
+				<string>sqlite3 ~/Library/Messages/chat.db "select text from message where is_delivered = 1 order by ROWID desc limit 1;" | pbcopy</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>

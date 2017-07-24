@@ -12,7 +12,7 @@ Optional Tip: Set country code using mcc (in case SMS sending is failing)
 * Send Gtalk Message/SMS to your contacts
 * Multiple Google accounts could be present on the system.
 * Search not just contacts, but also buddies whom you already messaged but not present in address book
-* Reply to last received message directly using ..
+* Reply to last conversation directly using ..
 * Copy last received message using ...
 
 ### Note
@@ -23,7 +23,7 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 
 ### Release Notes
 #### Sixth Release - 0.3.3 (ALPHA)
-* Reply to last received message using ..
+* Reply to last conversation using ..
 * Copy last received message using ...
 
 #### Fifth Release - 0.3.2 (ALPHA)
