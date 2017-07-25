@@ -4,9 +4,13 @@ Send Message to your friends from Alfred 2.
 Grab the extension present in build directory and enjoy. Current Version is 0.3.3 (ALPHA)
 
 ### Usage
-Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
+Configuration: One time activity. Run msgbuild and wait for 1-2 mins. This will build up database which will help in faster run times. If it fails, open contacts app and try again.
+
+Usage: Just type msg and then start typing contact name or email or phone number. As you start typing, matching contacts will appear. Select one of them and then enter the message you want to send. That's it :)
 
 Optional Tip: Set country code using mcc (in case SMS sending is failing) 
+
+Note: If you add a new contact after workflow is configured, re-run msgbuild. Till then new contact won't appear
 
 ### Features
 * Send Gtalk Message/SMS to your contacts
@@ -50,6 +54,9 @@ Inspired from my fav extension - IM by NolanChan. But for some reason, he abondo
 
 ### In the pipeline
 * Imessage Support
+* New contact addition needs msgbuild to re-run. Any workaround ?
+* msgbuild taking long time.
+* Sometimes, msgbuild needs contacts app to be open. Either open it in background or eliminate its need
 * Non ASCII Character support for contacts
 * (Experimental) Whats App (with yowsup client), Facebook, Pushbullet, Mail and others support
 * (Experimental) Try decreasing number of steps to send message
